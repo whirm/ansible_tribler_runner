@@ -1,0 +1,4 @@
+---
+# defaults file for whirm.tribler_runner
+
+tribler_user: jenkins
