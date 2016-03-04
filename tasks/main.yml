@@ -4,7 +4,7 @@
 # TODO: clean up the dependencies
 
 - name: Installs Tribler dependencies
-  action: apt pkg="{{item}}" state=present
+  action: apt pkg="{{item}}" state=present cache_valid_time=3600 update_cache=yes
   with_items:
     # - python-wxgtk2.8
     - libav-tools
@@ -12,8 +12,12 @@
     - libjs-mootools
     - libsodium13
     - libstdc++6-4.8-dbg
+    - libwxbase3.0-0-dbg
+    - libwxgtk-media3.0-0-dbg
+    - libwxgtk3.0-0-dbg
     - libx11-6
     - python-cherrypy3
+    - python-cffi
     - python-configobj
     - python-dbg
     - python-feedparser
