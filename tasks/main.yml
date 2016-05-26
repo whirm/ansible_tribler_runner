@@ -2,11 +2,13 @@
 # tasks file for whirm.tribler_runner
 
 # TODO: clean up the dependencies
+# TODO: split testing/debugging dependencies in a separate role
 
 - name: Installs Tribler dependencies
   action: apt pkg="{{item}}" state=present cache_valid_time=3600 update_cache=yes
   with_items:
     # - python-wxgtk2.8
+    - aspell-en # Used by pylint
     - libav-tools
     - libjs-excanvas
     - libjs-mootools
@@ -16,15 +18,18 @@
     - libwxgtk-media3.0-0-dbg
     - libwxgtk3.0-0-dbg
     - libx11-6
-    - python-cherrypy3
+    - pylint
     - python-cffi
+    - python-cherrypy3
     - python-configobj
     - python-dbg
+    - python-enchant
     - python-feedparser
     - python-leveldb
     - python-libtorrent
     - python-libtorrent-dbg
     - python-m2crypto
+    - python-meliae
     - python-netifaces
     - python-networkx
     - python-pil
@@ -35,7 +40,11 @@
     - python-twisted-bin-dbg
     - python-virtualenv
     - python-zope.interface-dbg
+    - git
 
-- name: "Install plyvel on tribler user's $HOME"
-  pip: name=plyvel extra_args="--user"
+- name: "Install non-debian dependencies on tribler user's $HOME"
+  pip: name="{{item}}" extra_args="--user"
   remote_user: "{{tribler_user}}"
+  with_items:
+    - yappi
+    - plyvel
