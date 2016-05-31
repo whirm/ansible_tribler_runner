@@ -44,7 +44,8 @@
 
 - name: "Install non-debian dependencies on tribler user's $HOME"
   pip: name="{{item}}" extra_args="--user"
-  remote_user: "{{tribler_user}}"
+  become: yes
+  become_user: "{{tribler_user}}"
   with_items:
     - yappi
     - plyvel
