@@ -8,15 +8,16 @@
   action: apt pkg="{{item}}" state=present cache_valid_time=3600 update_cache=yes
   with_items:
     # - python-wxgtk2.8
+    # - python-wxgtk3.0
     - aspell-en # Used by pylint
     - libav-tools
     - libjs-excanvas
     - libjs-mootools
     - libsodium13
     - libstdc++6-4.8-dbg
-    - libwxbase3.0-0-dbg
-    - libwxgtk-media3.0-0-dbg
-    - libwxgtk3.0-0-dbg
+    #- libwxbase3.0-0-dbg
+    #- libwxgtk-media3.0-0-dbg
+    #- libwxgtk3.0-0-dbg
     - libx11-6
     - pylint
     - python-cffi
@@ -30,17 +31,27 @@
     - python-libtorrent-dbg
     - python-m2crypto
     - python-meliae
+    - python-mock
     - python-netifaces
     - python-networkx
     - python-pil
     - python-pip
     - python-pyasn1
+    #- python-pylint-common
+    #- python-pylint-plugin-utils
+    - git
+    - python-pyqt5
+    - python-pyqt5.qtsvg
     - python-requests
+    - python-setuptools
+    - python-storm
+    - python-storm-dbg
+    - python-transaction
     - python-twisted
     - python-twisted-bin-dbg
     - python-virtualenv
+    - python-zope.component
     - python-zope.interface-dbg
-    - git
 
 - name: "Install non-debian dependencies on tribler user's $HOME"
   pip: name="{{item}}" extra_args="--user"
